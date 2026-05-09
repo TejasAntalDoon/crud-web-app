@@ -11,11 +11,11 @@ app.listen(port, (err) => [console.log(`Server is running on : ${port}`)]);
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "newproductmaster",
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 pool.getConnection((err, Connection) => {
@@ -63,4 +63,3 @@ app.delete("/products/:productid", (req, res) => {
     return res.json(result);
   });
 });
-
